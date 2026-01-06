@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: clean_chat_data        # Test for din første model
+    columns:
+      - name: message
+        tests:
+          - not_null
+
+  - name: user_message_stats
+    columns:
+      - name: USERNAME  # Sørg for at dette matcher dit kolonnenavn præcis
+        tests:
+          - not_null
+          - unique
+
+      - name: total_messages
+        tests:
+          - accepted_values:
+              values: [0, 1, 2, 3, 4, 5]
+              config:
+                severity: warn
